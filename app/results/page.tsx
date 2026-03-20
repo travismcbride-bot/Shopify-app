@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { LightningLinear, GraphUpLinear } from "solar-icon-set";
 
@@ -15,7 +14,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { diagnosticData } from "@/lib/diagnostic-data";
 
 export default function ResultsPage() {
-  const isExternalCanvasUrl = diagnosticData.growthCanvasUrl.startsWith("http");
   const prioritizedOpportunities = [...diagnosticData.opportunities].sort((a, b) => {
     if (a.id === "cart-recovery") return -1;
     if (b.id === "cart-recovery") return 1;
@@ -36,9 +34,14 @@ export default function ResultsPage() {
           <MetricsRow metrics={diagnosticData.metrics} />
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <Card className="border-blue-200 bg-blue-50">
-            <CardContent className="flex flex-col gap-2 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="grid items-stretch gap-4 md:grid-cols-2"
+        >
+          <Card className="h-full border-blue-200 bg-blue-50">
+            <CardContent className="flex h-full flex-col gap-2 p-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-800">Potential Annual Revenue Opportunity</p>
                 <p className="text-2xl font-semibold text-blue-900">
@@ -51,6 +54,17 @@ export default function ResultsPage() {
               <LightningLinear size={22} color="currentColor" className="text-blue-700" />
             </CardContent>
           </Card>
+
+          <div className="h-full">
+            <Button asChild size="lg" className="h-full w-full text-base font-medium">
+              <a href="https://canvas-demo-cyan.vercel.app/launchpad">
+                <div className="flex items-center justify-center gap-2">
+                  <BlueConicLogo className="h-5 w-5" />
+                  <span>Launch the Growth Engine</span>
+                </div>
+              </a>
+            </Button>
+          </div>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
@@ -116,25 +130,6 @@ export default function ResultsPage() {
           </Card>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-8"
-        >
-          <Button asChild size="lg" className="h-14 w-full text-base font-medium">
-            <Link
-              href={diagnosticData.growthCanvasUrl}
-              target={isExternalCanvasUrl ? "_blank" : undefined}
-              rel={isExternalCanvasUrl ? "noreferrer" : undefined}
-            >
-              <div className="flex items-center justify-center gap-2">
-                <BlueConicLogo className="h-5 w-5" />
-                <span>Launch the Growth Engine</span>
-              </div>
-            </Link>
-          </Button>
-        </motion.div>
       </div>
     </AppShell>
   );
