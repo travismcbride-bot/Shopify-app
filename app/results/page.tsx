@@ -38,9 +38,9 @@ export default function ResultsPage() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="grid items-stretch gap-4 md:grid-cols-2"
+          className="grid items-stretch gap-4 md:grid-cols-3"
         >
-          <Card className="h-full border-blue-200 bg-blue-50">
+          <Card className="h-full border-blue-200 bg-blue-50 md:col-span-2">
             <CardContent className="flex h-full flex-col gap-2 p-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-800">Potential Annual Revenue Opportunity</p>
@@ -55,15 +55,21 @@ export default function ResultsPage() {
             </CardContent>
           </Card>
 
-          <div className="h-full">
-            <Button asChild size="lg" className="h-full w-full text-base font-medium">
-              <a href="https://canvas-demo-cyan.vercel.app/launchpad">
-                <div className="flex items-center justify-center gap-2">
-                  <BlueConicLogo className="h-5 w-5" />
-                  <span>Launch the Growth Engine</span>
-                </div>
-              </a>
-            </Button>
+          <div className="h-full md:col-span-1">
+            <motion.div
+              className="h-full w-full"
+              animate={{ scale: [1, 1.015, 1] }}
+              transition={{ duration: 2.4, ease: "easeInOut", repeat: Infinity }}
+            >
+              <Button asChild size="lg" className="h-full w-full text-xl font-semibold">
+                <a href="https://canvas-demo-cyan.vercel.app/launchpad">
+                  <div className="flex items-center justify-center gap-3">
+                    <BlueConicLogo className="h-7 w-7" withBackground={false} />
+                    <span>Start your Growth Engine</span>
+                  </div>
+                </a>
+              </Button>
+            </motion.div>
           </div>
         </motion.div>
 

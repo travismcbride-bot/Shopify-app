@@ -2,9 +2,10 @@ import { cn } from "@/lib/utils";
 
 type BlueConicLogoProps = {
   className?: string;
+  withBackground?: boolean;
 };
 
-export function BlueConicLogo({ className }: BlueConicLogoProps) {
+export function BlueConicLogo({ className, withBackground = true }: BlueConicLogoProps) {
   return (
     <svg
       viewBox="0 0 108 108"
@@ -12,7 +13,7 @@ export function BlueConicLogo({ className }: BlueConicLogoProps) {
       className={cn("shrink-0", className)}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="108" height="108" fill="#015FFF" />
+      {withBackground ? <rect width="108" height="108" fill="#015FFF" /> : null}
       <g transform="translate(6.75 6.75)">
         <path
           d="M43.875 21.9375C43.875 34.0532 34.0532 43.875 21.9375 43.875C9.82178 43.875 0 34.0532 0 21.9375C0 9.82178 9.82178 0 21.9375 0C34.0532 0 43.875 9.82178 43.875 21.9375Z"
